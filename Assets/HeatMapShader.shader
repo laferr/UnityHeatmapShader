@@ -78,7 +78,7 @@
 
         float3 colors[5]; //colors for point ranges
         float pointranges[5];  //ranges of values used to determine color values
-        float _Hits[3 * 32]; //passed in array of pointranges 3floats/point, x,y,intensity
+        float _Hits[3 * 128]; //passed in array of pointranges 3floats/point, x,y,intensity
         int _HitCount = 0;
 
         void initalize()

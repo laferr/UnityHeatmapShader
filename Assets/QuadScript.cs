@@ -20,7 +20,7 @@ public class QuadScript : MonoBehaviour
     mMeshRenderer = GetComponent<MeshRenderer>();
     mMaterial = mMeshRenderer.material;
 
-    mPoints = new float[32 * 3]; //32 point 
+    mPoints = new float[128 * 3]; //32 point 
 
   }
 
@@ -30,7 +30,7 @@ public class QuadScript : MonoBehaviour
     if (mDelay <=0)
     {
       GameObject go = Instantiate(Resources.Load<GameObject>("Projectile"));
-      go.transform.position = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-3f, -1f));
+      go.transform.position = new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), Random.Range(-3f, -1f));
 
       mDelay = 0.5f;
     }
@@ -55,7 +55,7 @@ public class QuadScript : MonoBehaviour
       {
         Debug.Log("Hit Object " + hit.collider.gameObject.name);
         Debug.Log("Hit Texture coordinates = " + hit.textureCoord.x + "," + hit.textureCoord.y);
-        addHitPoint(hit.textureCoord.x*4-2, hit.textureCoord.y*4-2);
+        addHitPoint((hit.textureCoord.x*20-2), (hit.textureCoord.y*20-2));
       }
       Destroy(cp.otherCollider.gameObject);
     }
@@ -68,7 +68,7 @@ public class QuadScript : MonoBehaviour
     mPoints[mHitCount * 3 + 2] = Random.Range(1f, 3f);
 
     mHitCount++;
-    mHitCount %= 32;
+    mHitCount %= 128;
 
     mMaterial.SetFloatArray("_Hits", mPoints);
     mMaterial.SetInt("_HitCount", mHitCount);
